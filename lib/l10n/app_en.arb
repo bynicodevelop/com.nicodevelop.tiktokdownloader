@@ -1,0 +1,8 @@
+{
+    "addVideo": "Add video",
+    "@addVideo": { },
+    "videoSentToProcess": "Your video is being converted.",
+    "@videoSentToProcess": { },
+    "videoConvertedSuccessfully": "Your video has been converted successfully.",
+    "@videoConvertedSuccessfully": { }
+}
