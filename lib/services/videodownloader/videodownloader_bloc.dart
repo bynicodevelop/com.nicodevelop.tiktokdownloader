@@ -14,9 +14,9 @@ class VideoDownloaderBloc
       emit(VideoDownloaderLoadingState());
 
       try {
-        await _videosRepository.downloadFileLocally(
-          event.id,
-        );
+        await _videosRepository.downloadFileLocally({
+          "id": event.id,
+        });
 
         emit(VideoDownloaderSuccessState());
       } catch (e) {

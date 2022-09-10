@@ -1,3 +1,4 @@
+import 'package:com_nicodevelop_tiktokdownloader/services/video_remove/video_remove_bloc.dart';
 import 'package:com_nicodevelop_tiktokdownloader/services/video_search/video_search_bloc.dart';
 import 'package:com_nicodevelop_tiktokdownloader/services/videodownloader/videodownloader_bloc.dart';
 import 'package:com_nicodevelop_tiktokdownloader/services/videos/videos_bloc.dart';
@@ -25,6 +26,10 @@ class ServiceBootstrap extends StatelessWidget {
         BlocProvider<VideosBloc>(
           lazy: false,
           create: (context) => VideosBloc(),
+        ),
+        BlocProvider<VideoRemoveBloc>(
+          lazy: false,
+          create: (context) => VideoRemoveBloc(),
         ),
       ],
       child: child,

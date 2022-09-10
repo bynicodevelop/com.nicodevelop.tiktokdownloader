@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:com_nicodevelop_tiktokdownloader/components/bootstrap/bootstrap_component.dart';
 import 'package:com_nicodevelop_tiktokdownloader/components/buttons/add_video_button_component.dart';
 import 'package:com_nicodevelop_tiktokdownloader/components/clipboard/clipboard_component.dart';
@@ -30,6 +32,7 @@ class HomeScreen extends StatelessWidget {
             t(context)!.videoConvertedSuccessfully,
           );
 
+          log("VideoSearchComponent: Success - Refreshing videos");
           context.read<VideosBloc>().add(const OnVideosEvent());
         },
         // Not return error
