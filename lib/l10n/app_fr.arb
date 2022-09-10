@@ -1,5 +1,8 @@
 {
     "addVideo": "Ajouter une vidéo",
     "videoSentToProcess": "Votre vidéo est en cours de conversion.",
-    "videoConvertedSuccessfully": "Votre vidéo a été convertie avec succès."
+    "videoConvertedSuccessfully": "Votre vidéo a été convertie avec succès.",
+    "videoDownloadedLoading": "Votre vidéo est en cours de téléchargement.",
+    "videoDownloadedSuccessfully": "Votre vidéo a été téléchargée avec succès.",
+    "videoDownloadedError": "Une erreur s'est produite lors du téléchargement de votre vidéo."
 }

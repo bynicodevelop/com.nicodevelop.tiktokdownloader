@@ -20,11 +20,19 @@ class VideosBloc extends Bloc<VideosEvent, VideosState> {
     });
 
     on<OnVideosEvent>((event, emit) async {
+      emit(VideosInitialState(
+        isLoading: true,
+        items: state is VideosInitialState
+            ? (state as VideosInitialState).items
+            : [],
+      ));
+
       await _videosRepository.getFile();
     });
 
     on<OnVideoAddedEvent>((event, emit) async {
       emit(VideosInitialState(
+        isLoading: false,
         items: event.items,
       ));
     });

@@ -14,7 +14,7 @@ void notification(
       duration: const Duration(
         seconds: 2,
       ),
-      flushbarPosition: FlushbarPosition.TOP,
+      flushbarPosition: FlushbarPosition.BOTTOM,
       margin: const EdgeInsets.all(16.0),
       borderRadius: BorderRadius.circular(16.0),
       flushbarStyle: FlushbarStyle.FLOATING,

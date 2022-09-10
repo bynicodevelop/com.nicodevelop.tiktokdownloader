@@ -1,5 +1,8 @@
+import 'package:com_nicodevelop_tiktokdownloader/components/buttons/download_video_button_component.dart';
 import 'package:com_nicodevelop_tiktokdownloader/config/constants.dart';
 import 'package:com_nicodevelop_tiktokdownloader/services/videodownloader/videodownloader_bloc.dart';
+import 'package:com_nicodevelop_tiktokdownloader/utils/notifications.dart';
+import 'package:com_nicodevelop_tiktokdownloader/utils/translate.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -34,20 +37,29 @@ class PreviewComponent extends StatelessWidget {
             ),
           ),
         ),
-        IconButton(
-          onPressed: () {
-            context
-                .read<VideoDownloaderBloc>()
-                .add(const OnVideoDownloaderEvent(
-                  id: "",
-                ));
-          },
-          icon: const Icon(
-            Icons.download,
-            color: Colors.white,
+        DownloadVideoButtonComponent(
+          onLoading: () {},
+          onSuccess: () => sendSuccessNotification(
+            context,
+            t(context)!.videoDownloadedSuccessfully,
           ),
-          highlightColor: Colors.white.withOpacity(
-            .3,
+          onError: () => sendErrorNotification(
+            context,
+            t(context)!.videoDownloadedError,
+          ),
+          child: IconButton(
+            onPressed: () {
+              context.read<VideoDownloaderBloc>().add(OnVideoDownloaderEvent(
+                    id: item["id"],
+                  ));
+            },
+            icon: const Icon(
+              Icons.download,
+              color: Colors.white,
+            ),
+            highlightColor: Colors.white.withOpacity(
+              .3,
+            ),
           ),
         ),
       ],

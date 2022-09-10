@@ -7,17 +7,18 @@ abstract class VideosState extends Equatable {
   List<Object> get props => [];
 }
 
-class VideosLoadingState extends VideosState {}
-
 class VideosInitialState extends VideosState {
+  final bool isLoading;
   final List<Map<String, dynamic>> items;
 
   const VideosInitialState({
     this.items = const [],
+    this.isLoading = true,
   });
 
   @override
   List<Object> get props => [
         items,
+        isLoading,
       ];
 }

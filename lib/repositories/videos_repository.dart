@@ -1,10 +1,13 @@
 import 'dart:async';
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:com_nicodevelop_tiktokdownloader/config/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:gallery_saver/gallery_saver.dart';
+import 'package:path_provider/path_provider.dart';
 
 class VideosRepository {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
@@ -39,9 +42,8 @@ class VideosRepository {
 
       for (var element in videoQuerySnapshot.docs) {
         // TODO: not exists
-        // print("$kAppId/videos/${user.uid}/${element.id}.jpg");
         final String previewUrl = await _firebaseStorage
-            .ref("$kAppId/videos/${user.uid}/${element.id}.jpg")
+            .ref("apps/$kAppId/users/${user.uid}/media/${element.id}.jpg")
             .getDownloadURL();
 
         items.add({
@@ -52,6 +54,27 @@ class VideosRepository {
       }
 
       _streamController.add(items);
+    }
+  }
+
+  Future<void> downloadFileLocally(
+    String id,
+  ) async {
+    final User? user = _firebaseAuth.currentUser;
+
+    if (user != null) {
+      final Reference reference =
+          _firebaseStorage.ref("apps/$kAppId/users/${user.uid}/media/$id.mp4");
+
+      final dir = await getApplicationDocumentsDirectory();
+
+      final file = File("${dir.path}/$id.mp4");
+
+      await reference.writeToFile(file);
+
+      log("File downloaded to: ${file.path}");
+
+      await GallerySaver.saveVideo("${dir.path}/$id.mp4");
     }
   }
 }

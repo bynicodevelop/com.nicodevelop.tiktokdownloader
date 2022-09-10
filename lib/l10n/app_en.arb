@@ -4,5 +4,13 @@
     "videoSentToProcess": "Your video is being converted.",
     "@videoSentToProcess": { },
     "videoConvertedSuccessfully": "Your video has been converted successfully.",
-    "@videoConvertedSuccessfully": { }
+    "@videoConvertedSuccessfully": { },
+    "videoConvertedError": "An error occurred while converting your video.",
+    "@videoConvertedError": { },
+    "videoDownloadedLoading": "Your video is being downloaded.",
+    "@videoDownloadedLoading": { },
+    "videoDownloadedSuccessfully": "Your video has been downloaded successfully.",
+    "@videoDownloadedSuccessfully": { },
+    "videoDownloadedError": "An error occurred while downloading your video.",
+    "@videoDownloadedError": { }
 }
