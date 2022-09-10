@@ -1,4 +1,5 @@
 import 'package:another_flushbar/flushbar.dart';
+import 'package:com_nicodevelop_tiktokdownloader/config/constants.dart';
 import 'package:flutter/material.dart';
 
 void notification(
@@ -16,7 +17,9 @@ void notification(
       ),
       flushbarPosition: FlushbarPosition.BOTTOM,
       margin: const EdgeInsets.all(16.0),
-      borderRadius: BorderRadius.circular(16.0),
+      borderRadius: BorderRadius.circular(
+        kDefaultBorderRadius * .6,
+      ),
       flushbarStyle: FlushbarStyle.FLOATING,
     ).show(context);
 
