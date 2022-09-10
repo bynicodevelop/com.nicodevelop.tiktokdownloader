@@ -8,9 +8,18 @@ class CustomThemeData {
 
     return base.copyWith(
       useMaterial3: true,
+      scaffoldBackgroundColor: kDefaultBackgroundColor,
       appBarTheme: const AppBarTheme(
         surfaceTintColor: Colors.white,
         backgroundColor: Colors.transparent,
+        elevation: 0,
+        centerTitle: false,
+        titleTextStyle: TextStyle(
+          color: Colors.white,
+          fontSize: kDefaultFontSize * 1.5,
+          fontWeight: FontWeight.bold,
+          letterSpacing: 1,
+        ),
       ),
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
@@ -19,43 +28,10 @@ class CustomThemeData {
       ),
       textTheme: GoogleFonts.openSansTextTheme(
         base.textTheme.copyWith(
-          headline1: base.textTheme.headline1!.copyWith(
-            fontSize: 28.0,
-            fontWeight: FontWeight.w400,
-            color: Colors.black,
-            height: 1.3,
-          ),
-          headline2: base.textTheme.headline2!.copyWith(
-            fontSize: 18.0,
-            fontWeight: FontWeight.w400,
-            color: Colors.grey[800],
-            height: 1.5,
-          ),
-          headline3: base.textTheme.headline1!.copyWith(
-            fontSize: 16.0,
+          headline4: base.textTheme.headline4!.copyWith(
+            fontSize: kDefaultFontSize * 1.3,
             fontWeight: FontWeight.w500,
-            color: Colors.black,
-            height: 1.3,
-          ),
-          headline4: base.textTheme.headline1!.copyWith(
-            fontSize: 12.0,
-            fontWeight: FontWeight.w400,
-            color: Colors.grey[600],
-            fontStyle: FontStyle.italic,
-            height: 1.3,
-            letterSpacing: .9,
-          ),
-          headline5: base.textTheme.headline5!.copyWith(
-            fontSize: 22.0,
-            fontWeight: FontWeight.w700,
-            color: Colors.grey[800],
-          ),
-          headline6: base.textTheme.headline6!.copyWith(
-            fontSize: 12.0,
-            fontWeight: FontWeight.w400,
-            color: Colors.grey[600],
-            height: 1.3,
-            letterSpacing: .9,
+            color: Colors.white,
           ),
           button: base.textTheme.button!.copyWith(
             color: Colors.grey[800],
@@ -67,25 +43,19 @@ class CustomThemeData {
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.white,
-          foregroundColor: kDefaultPrimaryColor,
-          surfaceTintColor: Colors.white,
+          backgroundColor: kDefaultPrimaryColor,
+          foregroundColor: Colors.white,
           elevation: 1,
+          textStyle: const TextStyle(
+            fontWeight: FontWeight.w600,
+            fontSize: kDefaultFontSize,
+            letterSpacing: 1,
+          ),
         ),
       ),
-      cardTheme: const CardTheme(
-        color: Colors.white,
-        surfaceTintColor: kDefaultPrimaryColor,
-      ),
-      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      bottomSheetTheme: const BottomSheetThemeData(
+        backgroundColor: Colors.transparent,
         elevation: 0,
-        backgroundColor: Colors.white,
-        selectedItemColor: kDefaultPrimaryColor,
-        unselectedItemColor: Colors.grey[500],
-      ),
-      inputDecorationTheme: const InputDecorationTheme(
-        prefixIconColor: kDefaultPrimaryColor,
-        suffixIconColor: kDefaultPrimaryColor,
       ),
     );
   }

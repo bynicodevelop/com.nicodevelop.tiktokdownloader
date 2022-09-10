@@ -14,10 +14,11 @@ class VideoListComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Mes vidéos"),
+        title: const Text("Vidéos"),
       ),
       body: GridView.builder(
         padding: const EdgeInsets.only(
+          top: kDefaultPadding,
           left: kDefaultPadding,
           right: kDefaultPadding,
           bottom: 130.0,

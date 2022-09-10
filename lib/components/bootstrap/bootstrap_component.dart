@@ -1,4 +1,5 @@
 import 'package:com_nicodevelop_tiktokdownloader/config/constants.dart';
+import 'package:com_nicodevelop_tiktokdownloader/utils/translate.dart';
 import 'package:flutter/material.dart';
 
 class BootstrapComponent extends StatelessWidget {
@@ -9,8 +10,8 @@ class BootstrapComponent extends StatelessWidget {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: const [
-          Padding(
+        children: [
+          const Padding(
             padding: EdgeInsets.only(
               bottom: kDefaultPadding,
             ),
@@ -22,28 +23,29 @@ class BootstrapComponent extends StatelessWidget {
             ),
           ),
           Text(
-            "1 - Go to TikTok",
-            style: TextStyle(
-              fontSize: kDefaultFontSize * 1.3,
-            ),
+            t(context)!.label1Wizard,
+            style: Theme.of(context).textTheme.headline4,
+          ),
+          const SizedBox(
+            height: kDefaultPadding * .5,
           ),
           Text(
-            "2 - Click on the share button",
-            style: TextStyle(
-              fontSize: kDefaultFontSize * 1.3,
-            ),
+            t(context)!.label2Wizard,
+            style: Theme.of(context).textTheme.headline4,
+          ),
+          const SizedBox(
+            height: kDefaultPadding * .5,
           ),
           Text(
-            "3 - Copy the link",
-            style: TextStyle(
-              fontSize: kDefaultFontSize * 1.3,
-            ),
+            t(context)!.label3Wizard,
+            style: Theme.of(context).textTheme.headline4,
+          ),
+          const SizedBox(
+            height: kDefaultPadding * .5,
           ),
           Text(
-            "4 - Paste your the link here",
-            style: TextStyle(
-              fontSize: kDefaultFontSize * 1.3,
-            ),
+            t(context)!.label4Wizard,
+            style: Theme.of(context).textTheme.headline4,
           ),
         ],
       ),

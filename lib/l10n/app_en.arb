@@ -12,5 +12,13 @@
     "videoDownloadedSuccessfully": "Your video has been downloaded successfully.",
     "@videoDownloadedSuccessfully": { },
     "videoDownloadedError": "An error occurred while downloading your video.",
-    "@videoDownloadedError": { }
+    "@videoDownloadedError": { },
+    "label1Wizard": "1 - Go to TikTok",
+    "@label1Wizard": { },
+    "label2Wizard": "2 - Click on the share button",
+    "@label2Wizard": { },
+    "label3Wizard": "3 - Copy the link",
+    "@label3Wizard": { },
+    "label4Wizard": "4 - Paste your the link here",
+    "@label4Wizard": { }
 }

@@ -4,5 +4,9 @@
     "videoConvertedSuccessfully": "Votre vidéo a été convertie avec succès.",
     "videoDownloadedLoading": "Votre vidéo est en cours de téléchargement.",
     "videoDownloadedSuccessfully": "Votre vidéo a été téléchargée avec succès.",
-    "videoDownloadedError": "Une erreur s'est produite lors du téléchargement de votre vidéo."
+    "videoDownloadedError": "Une erreur s'est produite lors du téléchargement de votre vidéo.",
+    "label1Wizard": "1 - Va sur TikTok",
+    "label2Wizard": "2 - Clique sur le bouton partager",
+    "label3Wizard": "3 - Copie le lien",
+    "label4Wizard": "4 - Colle le lien ici"
 }
