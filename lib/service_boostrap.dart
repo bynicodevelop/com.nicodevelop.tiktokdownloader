@@ -25,7 +25,7 @@ class ServiceBootstrap extends StatelessWidget {
         ),
         BlocProvider<VideosBloc>(
           lazy: false,
-          create: (context) => VideosBloc(),
+          create: (context) => VideosBloc()..add(const OnVideosEvent()),
         ),
         BlocProvider<VideoRemoveBloc>(
           lazy: false,

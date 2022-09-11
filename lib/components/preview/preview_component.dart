@@ -90,7 +90,7 @@ class _PreviewComponentState extends State<PreviewComponent> {
         builder: modalBottomSeet,
       ),
       child: Stack(
-        alignment: Alignment.bottomRight,
+        alignment: Alignment.center,
         children: [
           Container(
             decoration: BoxDecoration(
@@ -98,43 +98,64 @@ class _PreviewComponentState extends State<PreviewComponent> {
               borderRadius: BorderRadius.circular(
                 kDefaultPadding / 2,
               ),
-              image: DecorationImage(
-                colorFilter: ColorFilter.mode(
-                  Colors.black.withOpacity(.8),
-                  BlendMode.dstATop,
-                ),
-                image: NetworkImage(
-                  widget.item["previewUrl"],
-                ),
-                fit: BoxFit.cover,
-              ),
+              image: widget.item["previewUrl"] != null
+                  ? DecorationImage(
+                      colorFilter: ColorFilter.mode(
+                        Colors.black.withOpacity(.8),
+                        BlendMode.dstATop,
+                      ),
+                      image: NetworkImage(
+                        widget.item["previewUrl"],
+                      ),
+                      fit: BoxFit.cover,
+                    )
+                  : null,
             ),
           ),
-          DownloadVideoButtonComponent(
-            onLoading: () {},
-            onSuccess: () => sendSuccessNotification(
-              context,
-              t(context)!.videoDownloadedSuccessfully,
-            ),
-            onError: () => sendErrorNotification(
-              context,
-              t(context)!.videoDownloadedError,
-            ),
-            child: IconButton(
-              onPressed: () {
-                context.read<VideoDownloaderBloc>().add(OnVideoDownloaderEvent(
-                      id: widget.item["id"],
-                    ));
-              },
-              icon: const Icon(
-                Icons.download,
-                color: Colors.white,
+          if (widget.item["previewUrl"] == null)
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.black.withOpacity(.8),
+                borderRadius: BorderRadius.circular(
+                  kDefaultPadding / 2,
+                ),
               ),
-              highlightColor: Colors.white.withOpacity(
-                .3,
+              child: CircularProgressIndicator(
+                color: Colors.white.withOpacity(.4),
               ),
             ),
-          ),
+          if (widget.item["previewUrl"] != null)
+            Positioned(
+              bottom: kDefaultPadding * .1,
+              right: kDefaultPadding * .1,
+              child: DownloadVideoButtonComponent(
+                onLoading: () {},
+                onSuccess: () => sendSuccessNotification(
+                  context,
+                  t(context)!.videoDownloadedSuccessfully,
+                ),
+                onError: () => sendErrorNotification(
+                  context,
+                  t(context)!.videoDownloadedError,
+                ),
+                child: IconButton(
+                  onPressed: () {
+                    context
+                        .read<VideoDownloaderBloc>()
+                        .add(OnVideoDownloaderEvent(
+                          id: widget.item["id"],
+                        ));
+                  },
+                  icon: const Icon(
+                    Icons.download,
+                    color: Colors.white,
+                  ),
+                  highlightColor: Colors.white.withOpacity(
+                    .3,
+                  ),
+                ),
+              ),
+            ),
         ],
       ),
     );

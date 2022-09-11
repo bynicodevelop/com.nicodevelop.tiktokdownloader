@@ -33,7 +33,6 @@ class HomeScreen extends StatelessWidget {
           );
 
           log("VideoSearchComponent: Success - Refreshing videos");
-          context.read<VideosBloc>().add(const OnVideosEvent());
         },
         // Not return error
         onError: () {},
@@ -46,10 +45,10 @@ class HomeScreen extends StatelessWidget {
                 );
           },
           child: BlocBuilder<VideosBloc, VideosState>(
-            bloc: context.read<VideosBloc>()..add(const OnVideosEvent()),
             builder: (context, state) {
               final VideosInitialState videoState =
                   (state as VideosInitialState);
+
               if (videoState.items.isEmpty && videoState.isLoading == false) {
                 return const BootstrapComponent();
               }

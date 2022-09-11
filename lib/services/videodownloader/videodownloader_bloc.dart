@@ -20,7 +20,6 @@ class VideoDownloaderBloc
 
         emit(VideoDownloaderSuccessState());
       } catch (e) {
-        print(e.toString());
         emit(VideoDownloaderErrorState(
           message: e.toString(),
         ));

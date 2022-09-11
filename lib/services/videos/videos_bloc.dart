@@ -12,7 +12,7 @@ class VideosBloc extends Bloc<VideosEvent, VideosState> {
 
   VideosBloc() : super(const VideosInitialState()) {
     _videosRepository.videos.listen((event) {
-      log("Listen event");
+      log("Video Bloc: Received new videos");
 
       add(OnVideoAddedEvent(
         items: event,
@@ -34,6 +34,7 @@ class VideosBloc extends Bloc<VideosEvent, VideosState> {
       emit(VideosInitialState(
         isLoading: false,
         items: event.items,
+        refresh: DateTime.now().millisecondsSinceEpoch,
       ));
     });
   }

@@ -16,7 +16,7 @@ class VideosRepository {
   final FirebaseStorage _firebaseStorage = FirebaseStorage.instance;
 
   final StreamController<List<Map<String, dynamic>>> _streamController =
-      StreamController<List<Map<String, dynamic>>>.broadcast();
+      StreamController<List<Map<String, dynamic>>>();
 
   Stream<List<Map<String, dynamic>>> get videos => _streamController.stream;
 
@@ -28,33 +28,47 @@ class VideosRepository {
       log("User is logged in");
       final List<Map<String, dynamic>> items = [];
 
-      QuerySnapshot<Map<String, dynamic>> videoQuerySnapshot =
-          await _firebaseFirestore
-              .collection("apps")
-              .doc(kAppId)
-              .collection("users")
-              .doc(user.uid)
-              .collection("videos")
-              .orderBy(
-                "createdAt",
-                descending: true,
-              )
-              .get();
+      _firebaseFirestore
+          .collection("apps")
+          .doc(kAppId)
+          .collection("users")
+          .doc(user.uid)
+          .collection("videos")
+          .orderBy(
+            "createdAt",
+            descending: true,
+          )
+          .snapshots()
+          .listen((event) async {
+        log("Received new videos");
+        items.clear();
 
-      for (var element in videoQuerySnapshot.docs) {
-        // TODO: not exists
-        final String previewUrl = await _firebaseStorage
-            .ref("apps/$kAppId/users/${user.uid}/media/${element.id}.jpg")
-            .getDownloadURL();
+        for (final QueryDocumentSnapshot<Map<String, dynamic>> document
+            in event.docs) {
+          String? previewUrl;
 
-        items.add({
-          "id": element.id,
-          "previewUrl": previewUrl,
-          ...element.data(),
-        });
-      }
+          Map<String, dynamic> data = document.data();
 
-      _streamController.add(items);
+          if (data["status"] == "uploaded") {
+            try {
+              previewUrl = await _firebaseStorage
+                  .ref(
+                      "apps/$kAppId/users/${user.uid}/media/${document.id}.jpg")
+                  .getDownloadURL();
+            } catch (e) {
+              log("Error getting preview url: $e");
+            }
+          }
+
+          items.add({
+            "id": document.id,
+            "previewUrl": previewUrl,
+            ...document.data(),
+          });
+        }
+
+        _streamController.sink.add(items);
+      });
     }
   }
 
